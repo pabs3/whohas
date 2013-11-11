@@ -1116,37 +1116,9 @@ sub trim($) {
 }
 
 sub opensuse {
-	my $opensusebase = "http://software.opensuse.org";
-	my @names;
-	my @repos;
-	my @groups;
-	my @versions;
-	my @urls;
-	my @sizes;
-	my @dates;
-	my $distroname = "openSUSE";
-
-	my @lines = split /\n/, &fetchdoc($opensusebase."/search?q=".$_[0]."&baseproject=".$distroname."&lang=en&exclude_debug=true");
-	for (my $i = 0; $i < @lines; $i++) {
-		if ($lines[$i] =~ /<div class="search-result-txt"/) {
-			my $line = $lines[($i+1)];
-			$line =~ s{^.*<h3><a href="}{};
-			$line =~ s{</?mark>}{}g;
-			$line =~ s{</a>.*}{};
-			my ($url, $name) = split /">/, $line, 2;
-			push @names, $name;
-			push @urls, "$opensusebase$url";
-			push @versions, '';
-			push @sizes,  '';
-			push @dates,  '';
-			push @groups, '';
-			push @repos, '';
-		}
-	}
-	for (my $i = 0; $i < @repos; $i++) {
-		&pretty_print($cols,@columns,$distroname,$names[$i],$versions[$i],$sizes[$i],$dates[$i],$repos[$i],$urls[$i]);
-	}
-	return();
+	my $current_package_list = 'http://download.opensuse.org/distribution/openSUSE-current/repo/oss/suse/setup/descr/packages.gz'
+	my $factory_package_list = 'http://download.opensuse.org/factory/repo/oss/suse/setup/descr/packages.gz'
+	my $api_server = 'http://api.opensuse.org/';
 }
 
 sub netbsd_pkgsrc_size {

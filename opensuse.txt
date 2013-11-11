@@ -1,0 +1,31 @@
+<pabs3> I can't get anything out of /search/package except 401 Authorization Required
+<pabs3> based on the osc code, this should work: wget "https://api.opensuse.org/search/package?match=%28[devel/[@package=%27gimp%27]]%29"
+<BManojlovic> pabs3: curl 'https://api.opensuse.org/search/package?match=%28\[devel/\[@package=%27gimp%27\]\]%29'
+<pabs3> still 401: <title>Authentication required!</title>
+<BManojlovic> oh i'm logged in...
+<BManojlovic> do you have your own server from which you could fetch data?
+<pabs3> nope
+<henne> pabs3: you're talking about package in the distro right?
+<henne> pabs3: not packages somewhere
+<pabs3> whohas needs to search for packages in the distro, yes
+<pabs3> thats the whole point of it, to search for package names in distros
+<henne> pabs3: http://download.opensuse.org/distribution/12.3/repo/oss/suse/setup/descr/packages.gz
+<henne> pabs3: packages start with =Pkg:
+<pabs3> I'd prefer an API to an 8MB download for each user but I guess an 8MB download is better than scraping :(
+<henne> pabs3: the OBS search api isn't public
+<pabs3> and no chance to change that, at least for the read-only stuff like searching?
+<henne> pabs3: we're currently exploring tokenized access. might be something which get live soon
+<henne> pabs3: but currently it's not :)
+<pabs3> perhaps I'll implement API access with login and fallback on downloading the 8MB
+<pabs3> would it be better to use openSUSE-current (and or opensSUSE-stable) than 12.3? http://download.opensuse.org/distribution/openSUSE-current/repo/oss/suse/setup/descr/packages.gz
+<henne> yeah, current is a link to the current version
+<pabs3> and stable?
+<coolo> stable is the old name for it :)
+<henne> the current stable version yes
+<coolo> as all opensuse versions are stable ;)
+<pabs3> ah ok :)
+<pabs3> hmmm not much bandwidth on this server? 6.31KB/s
+<henne> unstable would be factory
+<henne> http://download.opensuse.org/factory/repo/oss/suse/setup/descr/packages.gz
+<henne> pabs3: it's not a server. it's a CDN
+<henne> pabs3: see http://download.opensuse.org/distribution/openSUSE-current/repo/oss/suse/setup/descr/packages.gz.mirrorlist
