@@ -670,6 +670,7 @@ sub cygwin {
 }
 
 sub gentoo {
+	# FIXME: use the official search https://packages.gentoo.org/packages/search?q=
 	my $gentoobase = "http://gpo.zugaina.org/";
 	my $gentoobaseofficial = "http://packages.gentoo.org/package";
 	my $distroname = "Gentoo";
@@ -693,7 +694,6 @@ sub gentoo {
 						my @dosparts = split /\//, $parts[1];
 						$dosparts[1] =~ / +$/;
 						my $tempurl = $gentoobase."/".$dosparts[0]."/".$dosparts[1];
-						my $officialurl = $gentoobaseofficial."/".$dosparts[0]."/".$dosparts[1];
 						my @newlines = split /\n/, &fetchdoc($tempurl);
 						for (my $li = 0; $li < @newlines; $li++) {
 							if ($newlines[$li] =~ /\<li class\=\"[a-z]+ebuildrow\"/) {
@@ -706,7 +706,7 @@ sub gentoo {
 								}
 								push @names, $dosparts[1];
 								push @groups, $dosparts[0];
-								push @urls, $officialurl;
+								push @urls, $tempurl;
 								push @versions, $vernum;
 								push @repos, "";
 								push @sizes, "";
