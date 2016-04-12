@@ -35,6 +35,7 @@ use sigtrap;
 #TODO ubuntu: allow two releases: the long term supported and the most recent
 #TODO allow searching on several packages; return results only for those distros that have a hit for each package, possibly in tabular format
 #TODO deal gracefully with hyphens that may be present in some distros but not others, i.e. include extra hyphens in regexes, and allow user-specified hyphens to be absent
+#TODO http://doc.dl.playstation.net/doc/ps4-oss/
 
 use Config;
 use Env qw(HOME);
